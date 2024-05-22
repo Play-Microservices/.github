@@ -15,7 +15,7 @@ In order to run this application you need to install on your machine
 ## Development
 
 For development purposes I recommend using the following tools:
-- .NET SDK 7
+- .NET SDK 8
 - Docker
 - Git with Git Bash
 - Visual Studio Code (you can use Visual Studio but I do not recommend it for such small services like these)
