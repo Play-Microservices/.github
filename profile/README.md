@@ -7,7 +7,7 @@ Inside you can find all repositories required and used to set up, build and run 
 
 In order to run this application you need to install on your machine
 - Any OS platform thanks to .NET Core cross-platform architecture
-- .NET SDK version 7
+- .NET SDK version 8
 - Docker with the following applications:
     - Mongo DB
     - RabbitMQ
@@ -36,7 +36,7 @@ Based on microservices architecture, I decided to split services into autonomous
 
 This repository contains two projects:
 
-Service providing API with functionality related to item definition in the game.
+API providing API with functionality related to item definition in the game.
 User can create item based on which later users or other services can use and refer in the game.
 
 Library with contract definition for catalog items changes.
@@ -44,7 +44,7 @@ This contract is used for publish/subscribe pattern and used by other services a
 
 ### Play.Inventory
 
-Service providing API with functionality related to user inventory.
+API providing API with functionality related to user inventory.
 Thank to this users can assign/remove/update any items available in the system (exactly in Player.Catalog repository).
 It works in asynchronous way with Play.Catalog service.
 
@@ -60,3 +60,18 @@ Repository providing all tools required to set up application and run it in the 
 At this moment it contains docker-compose.yml file with configuration of all necessary images used by services (for development purposes atm).
 
 In future this repository will be responsible for CI/CD staff and things related with cloud provider (in my case it will be Azure).
+
+## Deployment
+
+1. Download all repositories into single folder - for example *Play.Microservices*.
+2. Navigate to Play.Common folder with source files and type in console `dotnet build` to build project.
+3. Then type `dotnet pack -o ../../../packages/ -p PackageVersion=1.0.4` to publish nuget package.
+4. Navigate to Play.Catalog.Contracts folder with source file and type in console `dotnet build` to build project.
+5. Then type `dotnet pack -o ../../../packages/ -p PackageVersion=1.0.1` to publish nuget package.
+6. Now you need to start MongoDB and RabbitMQ by goint to Play.Infrastructure and running command `docker compose up`.
+7. Go to Play.Catalog.API and type `dotnet build`.
+8. Start Catalog API in new console `dotnet run`.
+9. Go to Play.Inventory.API and type `dotnet build`.
+10. Start Inventory API in new console `dotnet run`.
+11. Go to Play.Frontend and type `npm build`.
+12. Start frontend server in new console `npm start`.
