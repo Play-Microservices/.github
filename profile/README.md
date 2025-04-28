@@ -61,6 +61,16 @@ At this moment it contains docker-compose.yml file with configuration of all nec
 
 In future this repository will be responsible for CI/CD staff and things related with cloud provider (in my case it will be Azure).
 
+### Play.Frontend
+
+Repository with Nodejs frontend app to call microservices.
+It has also link to RabbitMQ dashboard to see usage.
+
+### Play.Identity
+
+Repository with Identity Provider logic.
+It also contains API to manage users in the system.
+
 ## Deployment
 
 1. Download all repositories into single folder - for example *Play.Microservices*.
@@ -71,7 +81,5 @@ In future this repository will be responsible for CI/CD staff and things related
 6. Now you need to start MongoDB and RabbitMQ by goint to Play.Infrastructure and running command `docker compose up`.
 7. Go to Play.Catalog.API and type `dotnet build`.
 8. Start Catalog API in new console `dotnet run`.
-9. Go to Play.Inventory.API and type `dotnet build`.
-10. Start Inventory API in new console `dotnet run`.
-11. Go to Play.Frontend and type `npm build`.
-12. Start frontend server in new console `npm start`.
+9. Go to Play.Identity.API and type `dotnet build`.
+10. Start Identity API in new console `dotnet run`.
